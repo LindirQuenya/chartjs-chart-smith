@@ -1,7 +1,7 @@
 /* eslint-disable import/no-commonjs */
 /* eslint-env es6 */
 
-const terser = require('rollup-plugin-terser').terser;
+const terser = require('@rollup/plugin-terser');
 const pkg = require('./package.json');
 
 const banner = `/*!
