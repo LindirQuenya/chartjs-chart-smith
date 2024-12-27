@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const file = require('gulp-file');
-const karma = require('karma');
 const path = require('path');
 const {exec} = require('child_process');
 const pkg = require('./package.json');
@@ -33,23 +32,6 @@ function run(bin, args) {
 }
 
 gulp.task('build', () => run('rollup/dist/bin/rollup', ['-c', argv.watch ? '--watch' : '']));
-
-gulp.task('test', (done) => {
-	new karma.Server({
-		configFile: path.join(__dirname, 'karma.config.js'),
-		singleRun: !argv.watch,
-		args: {
-			coverage: !!argv.coverage,
-			inputs: (argv.inputs || 'test/specs/**/*.js').split(';'),
-			watch: argv.watch
-		}
-	},
-	(error) => {
-		// https://github.com/karma-runner/gulp-karma/issues/18
-		error = error ? new Error('Karma returned with the error code: ' + error) : undefined;
-		done(error);
-	}).start();
-});
 
 gulp.task('lint', () => {
 	const files = [
