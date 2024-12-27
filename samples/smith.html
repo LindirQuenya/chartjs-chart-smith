@@ -28,20 +28,19 @@
 				options: {
 					elements: {
 						point: {
-							pointStyle: 'cross',
-							radius: 10,
-							hoverRadius: 10,
+							radius: 2,
+							hoverRadius: 3,
 							borderColor: 'black'
 						}
 					}
 				},
 				data: {
 					datasets: [{
-						label: 'My Dataset',
+						label: 's11',
 						data: [
-							{ real : 1.0, imag : 2.0}, 
-							{ real : 1.0, imag : 1.0},
-							{ real : 1.0, imag : -1.0}
+							{ x : 0.65, y : 0.4, f : "3.5GHz", label_polar: true},
+							{ x : 0.23, y : 0.3, f : "3.6GHz", label_polar: true},
+							{ x : -0.8, y : -0.6,f : "3.7GHz", label_polar: true}
 						],
 					}]
 				}

@@ -1,13 +1,8 @@
 {
-  "name": "Chart.Smtih.js",
-  "version": "0.0.1",
-  "description": "Smith chart implementation for Chart.js",
-  "homepage": "https://github.com/nnnick/Chart.js",
-  "author": "etimberg",
-  "main": [
-    "Chart.Smith.js"
-  ],
-  "dependencies": {
-    "Chart.js": ">=2.0.0-beta2"
-  }
+  "name": "chartjs-chart-smith",
+  "description": "Create Smith Chart with Chart.js",
+  "homepage": "https://github.com/chartjs/chartjs-chart-smith",
+  "license": "MIT",
+  "version": "0.3.0",
+  "main": "dist/chartjs-chart-smith.js"
 }

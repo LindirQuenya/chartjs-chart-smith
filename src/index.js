@@ -17,7 +17,14 @@ Chart.defaults.smith = {
 			label: (bodyItem, data) => {
 				const dataset = data.datasets[bodyItem.datasetIndex];
 				const d = dataset.data[bodyItem.index];
-				return dataset.label + ': ' + d.real + ' + ' + d.imag + 'i';
+				if (d.label_polar !== true) {
+					return dataset.label + ': ' + d.f + ": " +
+						d.x.toFixed(4) + (d.y < 0 ? '-' : '+') + Math.abs(d.y).toFixed(4) + 'j';
+				} else {
+					const mag = 20 * Math.log10(Math.hypot(d.x, d.y));
+					const phi_d = (180/Math.PI) * Math.atan2(d.y, d.x);
+					return dataset.label + ': ' + d.f + ": " + mag.toFixed(4) + 'dB\u{2220}' + phi_d.toFixed(4) + '\u{00B0}';
+				}
 			}
 		}
 	}

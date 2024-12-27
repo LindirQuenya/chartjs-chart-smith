@@ -98,7 +98,7 @@ class Controller extends Chart.controllers.line {
 	calculatePointPosition(dataIndex) {
 		const scale = this.chart.scale;
 		const data = this.getDataset().data[dataIndex];
-		return scale.getPointPosition(data.real, data.imag);
+		return scale.getPointPosition(data.x, data.y);
 	}
 }
 

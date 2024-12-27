@@ -8,3 +8,4 @@ node_modules/
 *.stackdump
 docs/.docusaurus/
 docs/build/
+*.swp

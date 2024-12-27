@@ -11,7 +11,7 @@ const defaults = {
 	ticks: {
 		padding: 5,
 		rCallback: (tick) => tick.toString(),
-		xCallback: (tick) => tick.toString() + 'i',
+		xCallback: (tick) => tick.toString() + 'j',
 	}
 };
 
@@ -75,7 +75,7 @@ class SmithScale extends Chart.Scale {
 			helpers.each(me.xTicks, (xTick, index) => {
 				if (xTick !== 0) {
 					const halfDimension = me.minDimension / 2;
-					const labelStart = me.getPointPosition(0, xTick);
+					const labelStart = me.getPointPosition_RX(0, xTick);
 					const cosPhi = (labelStart.x - me.xCenter) / halfDimension;
 					const sinPhi = (labelStart.y - me.yCenter) / halfDimension;
 					const labelWidth = xLabelLengths[index] + me.options.ticks.padding;
@@ -249,7 +249,7 @@ class SmithScale extends Chart.Scale {
 			}
 		}
 	}
-	getPointPosition(real, imag) {
+	getPointPosition_RX(real, imag) {
 		// look for the intersection of the r circle and the x circle that is not the one along the right side of the canvas
 		const realRadius = 1 / (1 + real) * (this.minDimension / 2); // scale for the minDimension size
 		const realCenterX = this.xCenter + ((real / (1 + real)) * (this.minDimension / 2));
@@ -271,9 +271,15 @@ class SmithScale extends Chart.Scale {
 			y: imag === 0 ? this.yCenter : (Math.sin(phi) * imagRadius) + imagCenterY
 		};
 	}
+	getPointPosition(x, y) {
+		return {
+			x: this.xCenter + x * (this.minDimension) / 2,
+			y: this.yCenter - y * (this.minDimension) / 2
+		};
+	}
 	getLabelForIndex(index, datasetIndex) {
 		const d = this.chart.data.datasets[datasetIndex].data[index];
-		return d.real + ' + ' + d.imag + 'i';
+		return d.f + ": " + d.x + ' + ' + d.y + 'j';
 	}
 }
 
