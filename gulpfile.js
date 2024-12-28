@@ -1,13 +1,14 @@
 /* eslint-disable import/no-nodejs-modules, import/no-commonjs, no-use-before-define */
 
-const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const file = require('gulp-file');
-const path = require('path');
-const {exec} = require('child_process');
-const pkg = require('./package.json');
+import gulp from 'gulp';
+import eslint from 'gulp-eslint';
+import file from 'gulp-file';
+import path from 'path';
+import {execFile} from 'child_process';
+import pkg from './package.json' with  { type: "json" };
+import yargs from 'yargs';
 
-const argv = require('yargs')
+const argv = yargs
 	.option('output', {alias: 'o', default: 'dist'})
 	.option('docs-dir', {default: 'docs'})
 	.option('www-dir', {default: 'www'})
@@ -15,9 +16,8 @@ const argv = require('yargs')
 
 function run(bin, args) {
 	return new Promise((resolve, reject) => {
-		const exe = '"' + process.execPath + '"';
-		const src = require.resolve(bin);
-		const ps = exec([exe, src].concat(args || []).join(' '));
+		const src = new URL(import.meta.resolve(bin)).pathname;
+		const ps = execFile(process.execPath, [src, ...args.filter((arg) => arg !== undefined)]);
 
 		ps.stdout.pipe(process.stdout);
 		ps.stderr.pipe(process.stderr);
@@ -31,7 +31,7 @@ function run(bin, args) {
 	});
 }
 
-gulp.task('build', () => run('rollup/dist/bin/rollup', ['-c', argv.watch ? '--watch' : '']));
+gulp.task('build', () => run('rollup/dist/bin/rollup', ['--bundleConfigAsCjs', '-c', argv.watch ? '--watch' : undefined]));
 
 gulp.task('lint', () => {
 	const files = [

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Smith Chart</title>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"></script>
 		<script src="../dist/chartjs-chart-smith.js"></script>
 		<style>
 			body{
@@ -10,13 +10,19 @@
 				margin: 0;
 			}
 			#canvas-holder{
-				width:40%;
+				width:90vw;
+				height:90vh;
+				position:relative;
+				margin-left:5vw;
+				margin-right:5vw;
+				margin-top:5vh;
+				margin-bottom:5vh;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="canvas-holder">
-			<canvas id="chart-area" width="800" height="800"/>
+			<canvas id="chart-area"/>
 		</div>
 
 
@@ -26,6 +32,10 @@
 			window.mySmith = new Chart(ctx, {
 				type: 'smith',
 				options: {
+					parsing: false,
+					aspectRatio: 1,
+					maintainAspectRatio: false,
+					resizeDelay: 5,
 					elements: {
 						point: {
 							radius: 2,

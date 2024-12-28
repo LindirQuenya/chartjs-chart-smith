@@ -2,7 +2,7 @@
  * Defines the scale for the smith chart.
  * When built, Chart will be passed via the UMD header
  */
-import Chart from 'chart.js';
+import {Chart} from 'chart.js';
 const helpers = Chart.helpers;
 
 const defaults = {
@@ -277,11 +277,13 @@ class SmithScale extends Chart.Scale {
 			y: this.yCenter - y * (this.minDimension) / 2
 		};
 	}
-	getLabelForIndex(index, datasetIndex) {
-		const d = this.chart.data.datasets[datasetIndex].data[index];
-		return d.f + ": " + d.x + ' + ' + d.y + 'j';
+	determineDataLimits() {
+		this.min = 0;
+		this.max = 1;
 	}
 }
 
-export {defaults};
+SmithScale.id = 'smith';
+SmithScale.defaults = defaults;
+
 export default SmithScale;

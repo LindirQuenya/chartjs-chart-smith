@@ -1,15 +1,16 @@
-import Chart from 'chart.js';
+import {Chart, LineController} from 'chart.js';
 
 const helpers = Chart.helpers;
-const resolve = helpers.options.resolve;
+const resolve = helpers.resolve;
 const valueOrDefault = helpers.valueOrDefault;
 
-class Controller extends Chart.controllers.line {
+export default class SmithController extends LineController {
+	static id = 'smith';
 	// Not needed since there is only a single scale
 	// eslint-disable-next-line class-methods-use-this, no-empty-function
 	linkScales() {}
 
-	updateElement(point, index) {
+	updateElements(points, start, count, mode) {
 		const me = this;
 		const meta = me.getMeta();
 		const custom = point.custom || {};
@@ -100,6 +101,17 @@ class Controller extends Chart.controllers.line {
 		const data = this.getDataset().data[dataIndex];
 		return scale.getPointPosition(data.x, data.y);
 	}
-}
+	parse(start, count) {
+		const data = this.getDataset().data;
+		const meta = this._cachedMeta;
 
-export default Controller;
+		if (this._parsing === false) {
+			meta._parsed = data;
+		} else {
+			let i, ilen;
+			for (i = start, ilen = start + count; i < ilen; ++i) {
+				meta._parsed[i] = data[i];
+			}
+		}
+	}
+}

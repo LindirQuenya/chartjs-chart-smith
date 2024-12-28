@@ -1,12 +1,14 @@
 'use strict';
 
-import Chart from 'chart.js';
-import Controller from './controller';
-import Scale, {defaults} from './scale';
+import {Chart} from 'chart.js';
+import SmithController from './controller';
+import SmithScale from './scale';
 
 // Register the Controller and Scale
-Chart.controllers.smith = Controller;
-Chart.defaults.smith = {
+//Chart.controllers.smith = SmithController;
+Chart.register(SmithScale);
+Chart.register(SmithController);
+/*Chart.defaults.smith = {
 	aspectRatio: 1,
 	scale: {
 		type: 'smith',
@@ -30,4 +32,4 @@ Chart.defaults.smith = {
 		}
 	}
 };
-Chart.scaleService.registerScaleType('smith', Scale, defaults);
+*/

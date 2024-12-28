@@ -14,6 +14,7 @@
     "chartjs",
     "smith chart"
   ],
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/chartjs/chartjs-chart-smith.git"
@@ -27,7 +28,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
-    "chart.js": "~2.9.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "chart.js": "^4.4.7",
     "coveralls": "^3.1.0",
     "eslint-config-chartjs": "^0.2.0",
     "eslint-config-esnext": "^4.0.0",
@@ -38,10 +40,9 @@
     "gulp-streamify": "^1.0.2",
     "gulp-zip": "^5.0.1",
     "rollup": "^4.29.1",
-    "@rollup/plugin-terser": "^0.4.4",
     "yargs": "^15.3.1"
   },
   "peerDependencies": {
-    "chart.js": ">= 2.7.0 < 3"
+    "chart.js": "^4.4.7"
   }
 }
