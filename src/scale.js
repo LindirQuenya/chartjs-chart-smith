@@ -11,7 +11,7 @@ const defaults = {
 	ticks: {
 		padding: 5,
 		rCallback: (tick) => tick.toString(),
-		xCallback: (tick) => tick.toString() + 'j',
+		xCallback: (tick) => tick.toString(),
 	}
 };
 
