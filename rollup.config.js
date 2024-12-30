@@ -20,11 +20,11 @@ module.exports = [
 			format: 'umd',
 			indent: false,
 			globals: {
-				'chart.js': 'Chart'
+				'chart.js2': 'Chart'
 			}
 		},
 		external: [
-			'chart.js'
+			'chart.js2'
 		]
 	},
 	{
@@ -34,7 +34,7 @@ module.exports = [
 			format: 'umd',
 			indent: false,
 			globals: {
-				'chart.js': 'Chart'
+				'chart.js2': 'Chart'
 			}
 		},
 		plugins: [
@@ -45,7 +45,7 @@ module.exports = [
 			})
 		],
 		external: [
-			'chart.js'
+			'chart.js2'
 		]
 	}
 ];

@@ -1,6 +1,6 @@
 'use strict';
 
-import Chart from 'chart.js';
+import Chart from 'chart.js2';
 import Controller from './controller';
 import Scale, {defaults} from './scale';
 

@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+import Chart from 'chart.js2';
 
 const helpers = Chart.helpers;
 const resolve = helpers.options.resolve;

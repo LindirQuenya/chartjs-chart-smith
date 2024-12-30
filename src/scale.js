@@ -2,7 +2,7 @@
  * Defines the scale for the smith chart.
  * When built, Chart will be passed via the UMD header
  */
-import Chart from 'chart.js';
+import Chart from 'chart.js2';
 const helpers = Chart.helpers;
 
 const defaults = {
