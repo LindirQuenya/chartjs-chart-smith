@@ -31,3 +31,4 @@ Chart.defaults.smith = {
 	}
 };
 Chart.scaleService.registerScaleType('smith', Scale, defaults);
+export default Chart;
